@@ -7,11 +7,14 @@
 
 import UIKit
 import Reusable
+import URLNavigator
 
 class LoginSuccessViewController: UIViewController, ViewModelBased, StoryboardBased {
     typealias ViewModelType = LoginnSuccessViewModel
     
     var viewModel : LoginnSuccessViewModel!
+    
+    var navigator : NavigatorProtocol?
     
 
     @IBOutlet private weak var lblCenter : UILabel!

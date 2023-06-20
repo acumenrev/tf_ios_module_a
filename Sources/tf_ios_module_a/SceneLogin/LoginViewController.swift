@@ -7,16 +7,20 @@
 
 import UIKit
 import Reusable
+import URLNavigator
+import tf_ios_app_flows
 
 public class LoginViewController: UIViewController, ViewModelBased {
     
     public var viewModel: LoginViewModel!
     
     typealias ViewModelType = LoginViewModel
+    private(set) var navigator: NavigatorProtocol?
     
-    public static func instantiate() -> LoginViewController {
+    public static func instantiate(navigator: NavigatorProtocol) -> LoginViewController {
         let vc = LoginViewController.init(nibName: "LoginViewController", bundle: .module)
         vc.viewModel = LoginViewModel()
+        vc.navigator = navigator
         vc.title = "Login"
         return vc
     }
@@ -39,10 +43,10 @@ public class LoginViewController: UIViewController, ViewModelBased {
     }
     
     @IBAction private func btnLoginSuccess(_ data : Any) {
-        viewModel.loginnSuccess()
+        navigator?.push(ModuleARoutes.loginResult.rawValue, context: ["message": "Success"], from: .none, animated: true)
     }
     
     @IBAction private func btnLoginFail(_ data : Any) {
-        viewModel.loginnFailed()
+        navigator?.push(ModuleARoutes.loginResult.rawValue, context: ["message": "Failed"], from: .none, animated: true)
     }
 }

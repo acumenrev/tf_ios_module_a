@@ -68,7 +68,7 @@ public class ModuleAFlow : IFlowA {
     
     
     private func openModuleB() -> FlowContributors {
-        self.rootCoordinator?.navigate(to: FlowBStepper.profile)
+      
         return .none
     }
     
