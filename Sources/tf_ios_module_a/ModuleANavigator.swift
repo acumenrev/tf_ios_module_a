@@ -27,8 +27,8 @@ public struct ModuleANavigator {
             
             if message == "Success" {
                 
-                navigator.open(ModuleBRoutes.profile.rawValue, context: nil)
-                return nil
+//                navigator.open(ModuleBRoutes.profile.rawValue, context: nil)
+                return navigator.push(ModuleBRoutes.profile.rawValue, context: nil, from: .none, animated: true)
             }
             
             let vc = LoginSuccessViewController.init(nibName: "LoginSuccessViewController", bundle: Bundle.module)
