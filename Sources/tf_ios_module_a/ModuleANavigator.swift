@@ -24,6 +24,13 @@ public struct ModuleANavigator {
             
     
             print("open login result \(message)")
+            
+            if message == "Success" {
+                
+                navigator.open(ModuleBRoutes.profile.rawValue, context: nil)
+                return nil
+            }
+            
             let vc = LoginSuccessViewController.init(nibName: "LoginSuccessViewController", bundle: Bundle.module)
             vc.viewModel = LoginnSuccessViewModel(message: message)
             vc.title = message
