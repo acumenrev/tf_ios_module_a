@@ -14,9 +14,13 @@ import RxSwift
 
 
 public class ModuleAFlow : IFlowA {
+    public weak var rootCoordinator: RxFlow.FlowCoordinator?
     
-    public init(service : String) {
+    
+    
+    public init(service : String, coordinator : FlowCoordinator) {
         appService = service
+        rootCoordinator = coordinator
     }
     
     public var root: Presentable {
@@ -38,7 +42,7 @@ public class ModuleAFlow : IFlowA {
         case .loginFailed(let message):
             return navigateToLoginResultScreen(message: message)
         case .loginSuccess(let message):
-            return navigateToLoginResultScreen(message: message)
+            return openModuleB()
         default:
             return .none
         }
@@ -60,6 +64,12 @@ public class ModuleAFlow : IFlowA {
         vc.title = message
         self.rootViewController.pushViewController(vc, animated: true)
         return .one(flowContributor: .contribute(withNextPresentable: vc, withNextStepper: vc.viewModel))
+    }
+    
+    
+    private func openModuleB() -> FlowContributors {
+        self.rootCoordinator?.navigate(to: FlowBStepper.profile)
+        return .none
     }
     
 }

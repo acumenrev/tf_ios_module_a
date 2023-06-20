@@ -1,6 +1,15 @@
 {
   "pins" : [
     {
+      "identity" : "purelayout",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/PureLayout/PureLayout",
+      "state" : {
+        "revision" : "5561683c96dc49b023c1299bfe4f6fbeed5f8199",
+        "version" : "3.1.9"
+      }
+    },
+    {
       "identity" : "reusable",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/AliSoftware/Reusable.git",
@@ -33,7 +42,7 @@
       "location" : "https://github.com/acumenrev/tf_ios_app_flows",
       "state" : {
         "branch" : "master",
-        "revision" : "d4c2fa57abff364c1c3225fa6f0f45abad5a98b2"
+        "revision" : "a06d6af2f0b32cecea0d820043964de64762098c"
       }
     }
   ],
