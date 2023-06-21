@@ -44,8 +44,6 @@ public class ModuleAFlow : IFlowA {
             return navigateToLoginScreen()
         case .loginFailed(let message):
             return navigateToLoginResultScreen(message: message)
-        case .loginSuccess(let message):
-            return openModuleB()
         default:
             return .none
         }
