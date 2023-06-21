@@ -19,17 +19,18 @@ public class ModuleAFlow : IFlowA {
     public var flowB: IFlowB?
     
     
-    public init(service : String, coordinator : FlowCoordinator, moduleBFlow : IFlowB?) {
+    public init(service : String, coordinator : FlowCoordinator, moduleBFlow : IFlowB?, rootVC : UINavigationController) {
         appService = service
         rootCoordinator = coordinator
         flowB = moduleBFlow
+        self.rootViewController = rootVC
     }
     
     public var root: Presentable {
-        return self.rootViewController
+        return self.rootViewController ?? UINavigationController()
     }
     
-    private let rootViewController = UINavigationController()
+    private weak var rootViewController :UINavigationController?
     public var appService: String
     
     
@@ -55,7 +56,7 @@ public class ModuleAFlow : IFlowA {
         let vc = LoginViewController.init(nibName: "LoginViewController", bundle: Bundle.module)
         vc.viewModel = LoginViewModel()
         vc.title = "Login"
-        self.rootViewController.pushViewController(vc, animated: true)
+        self.rootViewController?.pushViewController(vc, animated: true)
         return .one(flowContributor: .contribute(withNextPresentable: vc, withNextStepper: vc.viewModel))
     }
     
@@ -64,7 +65,7 @@ public class ModuleAFlow : IFlowA {
         let vc = LoginSuccessViewController.init(nibName: "LoginSuccessViewController", bundle: Bundle.module)
         vc.viewModel = LoginnSuccessViewModel(message: message)
         vc.title = message
-        self.rootViewController.pushViewController(vc, animated: true)
+        self.rootViewController?.pushViewController(vc, animated: true)
         return .one(flowContributor: .contribute(withNextPresentable: vc, withNextStepper: vc.viewModel))
     }
     

@@ -41,14 +41,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         
         
-        
-        let moduleAFlow = ModuleAFlow.init(service: "Service", coordinator: self.coordinator, moduleBFlow: nil)
+        let nav = UINavigationController()
+        let moduleAFlow = ModuleAFlow.init(service: "Service", coordinator: self.coordinator, moduleBFlow: nil, rootVC: nav)
         self.coordinator.coordinate(flow: moduleAFlow, with: ModuleAStepper())
         print("setup coordinator")
         weak var weakSelf = self
         Flows.use(moduleAFlow, when: .created) { root in
             print("Flow init with root view controller: \(root)")
-            weakSelf?.window?.rootViewController = root
+            weakSelf?.window?.rootViewController = nav
             weakSelf?.window?.makeKeyAndVisible()
             print("Flow finish")
         }
