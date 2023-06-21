@@ -70,6 +70,8 @@ public class ModuleAFlow : IFlowA {
     
     
     private func openModuleB() -> FlowContributors {
+        let bValue = flowB != nil ? "Not null" : "null"
+        print("flowB: \(bValue)")
         guard let flowB else { return .none }
         return flowB.presentProfileScreen()
     }

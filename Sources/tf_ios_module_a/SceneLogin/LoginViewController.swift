@@ -44,10 +44,12 @@ public class LoginViewController: UIViewController, ViewModelBased {
     
     @IBAction private func btnLoginSuccess(_ data : Any) {
 //        navigator?.push(ModuleARoutes.loginResult.rawValue, context: ["message": "Success"], from: .none, animated: true)
-        navigator?.push(ModuleBRoutes.profile.rawValue, context: nil, from: .none, animated: true)
+//        navigator?.push(ModuleBRoutes.profile.rawValue, context: nil, from: .none, animated: true)
+        viewModel.loginnSuccess()
     }
     
     @IBAction private func btnLoginFail(_ data : Any) {
-        navigator?.push(ModuleARoutes.loginResult.rawValue, context: ["message": "Failed"], from: .none, animated: true)
+//        navigator?.push(ModuleARoutes.loginResult.rawValue, context: ["message": "Failed"], from: .none, animated: true)
+        viewModel.loginnFailed()
     }
 }
