@@ -16,11 +16,13 @@ import RxSwift
 public class ModuleAFlow : IFlowA {
     public weak var rootCoordinator: RxFlow.FlowCoordinator?
     
+    public var flowB: IFlowB?
     
     
-    public init(service : String, coordinator : FlowCoordinator) {
+    public init(service : String, coordinator : FlowCoordinator, moduleBFlow : IFlowB?) {
         appService = service
         rootCoordinator = coordinator
+        flowB = moduleBFlow
     }
     
     public var root: Presentable {
@@ -68,8 +70,8 @@ public class ModuleAFlow : IFlowA {
     
     
     private func openModuleB() -> FlowContributors {
-      
-        return .none
+        guard let flowB else { return .none }
+        return flowB.presentProfileScreen()
     }
     
 }
