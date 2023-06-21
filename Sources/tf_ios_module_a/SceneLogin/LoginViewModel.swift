@@ -19,7 +19,8 @@ public class LoginViewModel : Stepper, ViewModel {
     }
     
     public func loginnSuccess() {
-        self.steps.accept(FlowAStepper.loginSuccess(message: "Login Success"))
+//        self.steps.accept(FlowAStepper.loginSuccess(message: "Login Success"))
+        self.steps.accept(FlowBStepper.profile)
     }
     
      func loginnFailed() {
